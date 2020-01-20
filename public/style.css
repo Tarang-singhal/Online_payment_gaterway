@@ -1,3 +1,46 @@
+:root {
+    min-height: 100%;
+}
+
+body {
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #FFFFFF, #5f0eb9);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #FFFFFF, #5f0eb9);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 100%;
+}
+
+.landing-hr {
+    width: 250px;
+}
+
+.heading h1 {
+    font-size: 5rem;
+    font-weight: 500 !important;
+}
+
+.heading h6 {
+    font-size: 1.2rem;
+    font-weight: 600!important;
+}
+
+.choice-btn {
+    background-color: #6d1775fc;
+    border-color: #6d1775fc;
+    color: white;
+}
+
+.choice-btn:hover {
+    background-color: #4d1052fc;
+    color: white;
+    outline: 0;
+}
+
+.choice-btn:active {
+    outline: 0;
+}
+
 .text-purple {
     color: var(--purple)!important;
 }
@@ -46,6 +89,8 @@ hr {
 .jumbotron {
     padding: 1.2em 2em;
     border-radius: 2em;
+    background-color: white;
+    box-shadow: rgb(54, 52, 52) 1px 1px 10px 1px;
 }
 
 .jumbotron h6 {
@@ -62,4 +107,9 @@ hr {
     border-radius: 5px;
     margin: 3em;
     padding: 1em;
+    box-shadow: rgb(54, 52, 52) 0px 0px 1px 0px;
+}
+
+.shadow {
+    box-shadow: rgb(54, 52, 52) 1px 1px 10px 1px;
 }

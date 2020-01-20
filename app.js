@@ -48,6 +48,11 @@ app.get("/home", (req, res) => {
     res.render("landing", { currentUser: req.user });
 });
 
+//ABOUT PAGE
+app.get("/home/about", (req, res) => {
+    res.render("about", { currentUser: req.user });
+});
+
 //REGISTER ROUTE
 app.get("/home/register", (req, res) => {
     res.render("register", { currentUser: req.user });
@@ -103,6 +108,14 @@ function isLoggedIn(req, res, next) {
     res.redirect("/home/login");
 };
 
+//FUNCTION TO CHECK LOGGEDINHISTORY
+function isLoggedInHistory(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/home/dashboard/history");
+};
+
 //DASHBOARD ROUTES
 app.get("/home/dashboard", isLoggedIn, (req, res) => {
     res.render("dashboard", { currentUser: req.user });
@@ -114,7 +127,7 @@ app.get("/home/dashboard/credit", isLoggedIn, (req, res) => {
 });
 
 //History ROUTE
-app.get("/home/dashboard/history", isLoggedIn, (req, res) => {
+app.get("/home/dashboard/history", isLoggedInHistory, (req, res) => {
     res.render("history", { currentUser: req.user });
 });
 

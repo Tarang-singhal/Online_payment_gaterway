@@ -18,7 +18,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active ">
@@ -27,11 +26,17 @@
                     <li class="nav-item active ">
                         <a class="nav-link text-primary " href="/home/dashboard ">Dashboard <span class="sr-only ">(current)</span></a>
                     </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/dashboard/history">Invoice history <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/about">About <span class="sr-only ">(current)</span></a>
+                    </li>
                 </ul>
                 <%if(!currentUser){%>
                     <ul class="navbar-nav">
-                        <li><a class="btn text-purple btn-outline-purple  my-2 my-sm-0 " href="/home/login ">Login</a></li>
-                        <li><a class="btn text-pink btn-outline-pink my-2 mx-md-2 my-sm-0 " href="/home/register ">Register</a></li>
+                        <li><a class="btn text-purple btn-outline-purple  my-2 " href="/home/login ">Login</a></li>
+                        <li><a class="btn text-pink btn-outline-pink my-2 mx-lg-2  " href="/home/register ">Register</a></li>
                     </ul>
                     <% }else{ %>
                         <a class="btn text-danger btn-outline-danger my-2 my-sm-0 " href="/home/logout ">Logout</a>

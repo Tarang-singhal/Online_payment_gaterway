@@ -12,10 +12,10 @@
     </div>
     <div class="container menu clearfix">
         <div class="dropdown" style="float: right;">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary shadow dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MENU
         </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/home/dashboard/history">Invoice History</a>
                 <a class="dropdown-item" href="/home/dashboard/credit">Add Credit</a>
                 <a class="dropdown-item" href="#">XYZ</a>
@@ -33,7 +33,7 @@
                     <%}else{%>
                         <strong class="text-danger"><%=currentUser.total_outstanding%> Rs</strong>
                         <p class="text-center">
-                            <a class="btn btn-success" href="/home/dashboard/payment" target="_self">Make Payment</a>
+                            <a class="btn choice-btn shadow" href="/home/dashboard/payment" target="_self">Make Payment</a>
                         </p>
                         <%}%>
             </p>

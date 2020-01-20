@@ -6,7 +6,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Invoice amount</th>
                 <th scope="col">Remark</th>
-                <th scope="col">Status</th>
+                <th scope="col">Issue Date</th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +23,7 @@
                             <%=invoice.description%>
                         </td>
                         <td>
-                            <%if(invoice.paid){%>
-                                Paid <i class="fas fa-check"></i>
-                                <%}else{%>
-                                    Unpaid <i class="fas fa-times"></i>
-                                    <%}%>
+                            <%=invoice.date.toDateString()%>
                         </td>
                     </tr>
                     <%})%>

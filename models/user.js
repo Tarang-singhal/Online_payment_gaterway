@@ -4,7 +4,8 @@ var mongoose = require("mongoose"),
 var invoiceSchema = new mongoose.Schema({
     invoice_amount: Number,
     paid: Boolean,
-    description: String
+    description: String,
+    date: { type: Date, default: Date.now }
 });
 var userSchema = new mongoose.Schema({
     username: String,

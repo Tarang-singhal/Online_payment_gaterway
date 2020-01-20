@@ -1,0 +1,50 @@
+.text-purple {
+    color: var(--purple)!important;
+}
+
+.btn-outline-purple {
+    border-color: var(--purple)!important;
+}
+
+.text-pink {
+    color: var(--pink)!important;
+}
+
+.btn-outline-pink {
+    border-color: var(--pink)!important;
+}
+
+hr {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.heading {
+    margin-top: 18vh;
+    text-align: center;
+    background-image: url();
+}
+
+.gap {
+    margin-top: 6vh;
+}
+
+.jumbotron {
+    padding: 1.2em 2em;
+}
+
+.jumbotron h6 {
+    margin: 0 auto 0 0;
+    display: inline;
+}
+
+.menu {
+    padding-right: 3em;
+}
+
+.border-outline {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 3em;
+    padding: 1em;
+}

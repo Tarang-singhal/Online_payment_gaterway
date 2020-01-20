@@ -1,0 +1,36 @@
+<%- include('partials/header.ejs')-%>
+    <a href="/home/dashboard">Go Back!</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Invoice amount</th>
+                <th scope="col">Remark</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%var i=1%>
+                <%currentUser.invoices.forEach(function(invoice){%>
+                    <tr>
+                        <th scope="row">
+                            <%=i++%>
+                        </th>
+                        <td>
+                            <%=invoice.invoice_amount%> Rs
+                        </td>
+                        <td>
+                            <%=invoice.description%>
+                        </td>
+                        <td>
+                            <%if(invoice.paid){%>
+                                Paid <i class="fas fa-check"></i>
+                                <%}else{%>
+                                    Unpaid <i class="fas fa-times"></i>
+                                    <%}%>
+                        </td>
+                    </tr>
+                    <%})%>
+        </tbody>
+    </table>
+    <%- include('partials/footer.ejs')-%>

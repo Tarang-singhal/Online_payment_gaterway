@@ -1,0 +1,42 @@
+<%- include('partials/header.ejs')-%>
+    <div class="jumbotron gap" style="display: flex;">
+        <h6> Hello,
+            <%=currentUser.username%>
+        </h6>
+        <span>CREDIT: <%if(currentUser.credit===0){%>
+            <strong class="text-primary"> 0 Rs</strong>
+             <%}else{%>
+                <strong class="text-primary"><%=currentUser.credit%></strong> Rs
+                <%}%>
+            </span>
+    </div>
+    <div class="container menu clearfix">
+        <div class="dropdown" style="float: right;">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          MENU
+        </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/home/dashboard/history">Invoice History</a>
+                <a class="dropdown-item" href="/home/dashboard/credit">Add Credit</a>
+                <a class="dropdown-item" href="#">XYZ</a>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4 border-outline">
+            <p>Total Outstanding:
+                <%if(currentUser.total_outstanding===0){%>
+                    <strong style="font-weight: bold;" class="text-danger">0.00 Rs</strong>
+                    <p class="text-center">
+                        <a class="btn btn-success disabled" href="">Make Payment</a>
+                    </p>
+                    <%}else{%>
+                        <strong class="text-danger"><%=currentUser.total_outstanding%> Rs</strong>
+                        <p class="text-center">
+                            <a class="btn btn-success" href="/home/dashboard/payment">Make Payment</a>
+                        </p>
+                        <%}%>
+            </p>
+        </div>
+    </div>
+    <%- include('partials/footer.ejs')-%>

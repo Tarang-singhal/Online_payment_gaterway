@@ -3,7 +3,7 @@ const port = process.env.PORT;
 module.exports = (app) => {
     app.get("/payment", (req, res) => {
         let params = {};
-        params["MID"] = "",              //merchant id
+        params["MID"] = "vvDrhO48383680943249",
             params["WEBSITE"] = "WEBSTAGING",
             params["CHANNEL_ID"] = "WEB",
             params["INDUSTRY_TYPE_ID"] = "Retail",
@@ -14,7 +14,7 @@ module.exports = (app) => {
             params["EMAIL"] = "dfghf@gmail.com",
             params["MOBILE_NO"] = "5837537123"
 
-        checksum_lib.genchecksum(params, "", function(err, checksum) {       //merchant key
+        checksum_lib.genchecksum(params, "V7hAl7qD5JbRvRfc", function(err, checksum) { //merchant key
             let url = "https://securegw-stage.paytm.in/order/process";
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write('<html>');

@@ -22,18 +22,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active ">
-                        <a class="nav-link text-primary" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-primary " href="/ ">Home <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/dashboard ">Dashboard <span class="sr-only ">(current)</span></a>
                     </li>
                 </ul>
                 <%if(!currentUser){%>
-                    <a class="btn text-purple btn-outline-purple my-2 my-sm-0" href="/home/login">Login</a>
-                    <a class="btn text-pink btn-outline-pink my-2 mx-3 my-sm-0" href="/home/register">Register</a>
+                    <ul class="navbar-nav">
+                        <li><a class="btn text-purple btn-outline-purple  my-2 my-sm-0 " href="/home/login ">Login</a></li>
+                        <li><a class="btn text-pink btn-outline-pink my-2 mx-md-2 my-sm-0 " href="/home/register ">Register</a></li>
+                    </ul>
                     <% }else{ %>
-                        <a class="btn text-danger btn-outline-danger my-2 my-sm-0" href="/home/logout">Logout</a>
+                        <a class="btn text-danger btn-outline-danger my-2 my-sm-0 " href="/home/logout ">Logout</a>
+
                         <% } %>
             </div>
         </div>
 
     </nav>
     <hr>
-    <div class="container">
+    <div class="container ">

@@ -7,13 +7,6 @@
                     <label for="amount">Amount</label>
                     <input type="number" name="amount" class="form-control" id="amount" placeholder="amount" min="<%=0.1*currentUser.total_outstanding%>" max="<%=currentUser.total_outstanding%>">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="phone_number">Phone no.</label>
-                    <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="phone number">
-                </div>
-                <div style="display: none;"><input type="text" name="_id" value="<%=currentUser._id%>">
-                    <input type="email" name="email_id" value="<%=currentUser.email_id%>">
-                </div> -->
                 <button type="submit" class="btn btn-primary">Pay</button>
             </form>
         </div>

@@ -213,6 +213,7 @@ app.post("/paywithpaytmresponse", isLoggedIn, (req, res) => {
                         user.total_outstanding = parseInt(user.total_outstanding) - parseInt(deducted_amount);
                     } else {
                         user.credit = parseInt(user.credit) + parseInt(a);
+                        a = 0;
                     }
                     user.save();
                 }

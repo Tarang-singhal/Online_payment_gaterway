@@ -1,30 +1,45 @@
 <%- include('partials/header.ejs')-%>
+    <link rel="stylesheet" href="/style2.css">
     <div class="row justify-content-md-center gap">
-        <div class="col-md-6">
+        <div class="left-section">
+            <div class="header">
+                <h1 class="animation a1">Sign up!</h1>
+            </div>
             <form action="/home/register" method="POST">
-                <h2>Register</h2>
-                <div class="form-group">
-                    <label for="username">username</label>
-                    <input class="form-control" id="username" name="username" placeholder="username">
+                <div class="form">
+                    <input type="text" name="username" class="form-field animation a2" placeholder="Username">
+                    <input class="form-field animation a3" id="port_id" name="port_id" placeholder="port id">
+                    <input class="form-field animation a4" id="company_id" name="company_id" placeholder="company id">
+                    <input type="email" class="form-field animation a5" id="email_id" name="email_id" placeholder="email" aria-describedby="emailHelp">
+                    <input type="password" name="password" class="form-field animation a6" placeholder="Password">
+                    <button class="animation a6">LOGIN</button>
                 </div>
-                <div class="form-group">
-                    <label for="port_id">Port ID</label>
-                    <input class="form-control" id="port_id" name="port_id" placeholder="port id">
-                </div>
-                <div class="form-group">
-                    <label for="company_id">Company ID</label>
-                    <input class="form-control" id="company_id" name="company_id" placeholder="company id">
-                </div>
-                <div class="form-group">
-                    <label for="email_id">Email address</label>
-                    <input type="email" class="form-control" id="email_id" name="email_id" placeholder="email" aria-describedby="emailHelp">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Register</button>
             </form>
         </div>
     </div>
     <%- include('partials/footer.ejs')-%>
+
+        <!-- <form action="/home/register" method="POST">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="username">username</label>
+                <input class="form-control" id="username" name="username" placeholder="username">
+            </div>
+            <div class="form-group">
+                <label for="port_id">Port ID</label>
+                <input class="form-control" id="port_id" name="port_id" placeholder="port id">
+            </div>
+            <div class="form-group">
+                <label for="company_id">Company ID</label>
+                <input class="form-control" id="company_id" name="company_id" placeholder="company id">
+            </div>
+            <div class="form-group">
+                <label for="email_id">Email address</label>
+                <input type="email" class="form-control" id="email_id" name="email_id" placeholder="email" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form> -->

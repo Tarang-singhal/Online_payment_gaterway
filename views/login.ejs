@@ -1,19 +1,35 @@
 <%- include('partials/header.ejs')-%>
+    <link rel="stylesheet" href="/style2.css">
     <div class="row justify-content-md-center gap">
-        <div class="col-md-6">
+        <div class="left-section">
+            <div class="header">
+                <h1 class="animation a1">Welcome!</h1>
+                <h4 class="animation a2">Log in for dashboard.</h4>
+            </div>
             <form action="/home/login" method="POST">
-                <h2>Login</h2>
-                <div class="form-group">
-                    <label for="login_id">Usename</label>
-                    <input type="text" name="username" class="form-control" id="login_id" placeholder="username">
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="form">
+                    <input type="text" name="username" class="form-field animation a3" placeholder="Username">
+                    <input type="password" name="password" class="form-field animation a4" placeholder="Password">
+                    <button class="animation a6">LOGIN</button>
                 </div>
-                <div class="form-group">
-                    <label for="password_id">Password</label>
-                    <input type="password" name="password" class="form-control" id="password_id" placeholder="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>
     </div>
     <%- include('partials/footer.ejs')-%>
+        <!-- <div class="">
+            <div class="col-md-6">
+                <form action="/home/login" method="POST">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <label for="login_id">Usename</label>
+                        <input type="text" name="username" class="form-control" id="login_id" placeholder="username">
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_id">Password</label>
+                        <input type="password" name="password" class="form-control" id="password_id" placeholder="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div> -->

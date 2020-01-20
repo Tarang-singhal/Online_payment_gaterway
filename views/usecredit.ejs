@@ -8,7 +8,11 @@
 
                 <div class="form-group">
                     <label for="amount"></label>
-                    <input type="number" name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.credit%>">
+                    <%if(currentUser.total_outstanding>=currentUser.credit){%>
+                        <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.credit%>">
+                        <%}else{%>
+                            <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.total_outstanding%>">
+                            <%}%>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Pay</button>
             </form>

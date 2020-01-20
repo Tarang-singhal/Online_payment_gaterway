@@ -2,6 +2,20 @@
     color: var(--purple)!important;
 }
 
+.btn {
+    outline: 0;
+    letter-spacing: 1px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.extra-btn {
+    border: 0;
+    background: linear-gradient(to right, #2657eb 0%, #de6161 100%);
+    border-radius: 3px;
+    margin-top: 10px;
+    color: #fff;
+}
+
 .btn-outline-purple {
     border-color: var(--purple)!important;
 }
@@ -26,7 +40,7 @@ hr {
 }
 
 .gap {
-    margin-top: 6vh;
+    margin-top: 4vh;
 }
 
 .jumbotron {

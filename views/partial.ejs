@@ -5,7 +5,7 @@
                 <h2>Payment</h2>
                 <div class="form-group">
                     <label for="amount">Amount</label>
-                    <input type="number" name="amount" class="form-control" id="amount" placeholder="amount" min="<%=0.1*currentUser.total_outstanding%>" max="<%=currentUser.total_outstanding%>">
+                    <input type="number" name="amount" required class="form-control" id="amount" placeholder="amount" min="<%=Math.floor(0.1*currentUser.total_outstanding)%>" max="<%=currentUser.total_outstanding%>">
                 </div>
                 <button type="submit" class="btn btn-primary">Pay</button>
             </form>

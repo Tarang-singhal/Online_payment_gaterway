@@ -152,6 +152,25 @@ app.get("/home/dashboard/payment/partial", isLoggedIn, (req, res) => {
     res.render("partial", { currentUser: req.user });
 });
 
+//USE CREDIT PAYMENT ROUTE
+app.get("/home/dashboard/payment/usecredit", isLoggedIn, (req, res) => {
+    res.render("usecredit", { currentUser: req.user });
+});
+
+//POST USE CREDIT PAYMENT ROUTE
+app.post("/home/dashboard/payment/usecredit", isLoggedIn, (req, res) => {
+    User.findById(req.user._id, (err, user) => {
+        if (err) {
+            console.log(err);
+        } else {
+            user.credit = parseInt(user.credit) - parseInt(req.body.amount);
+            user.total_outstanding = parseInt(user.total_outstanding) - parseInt(req.body.amount);
+            user.save();
+        }
+    });
+    res.redirect("/home/dashboard");
+});
+
 //COMPLETE PAYMENT ROUTE
 app.get("/home/dashboard/payment/complete", isLoggedIn, (req, res) => {
     res.render("complete", { currentUser: req.user });

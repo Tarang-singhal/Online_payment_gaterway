@@ -4,7 +4,7 @@
             <form action="/paywithpaytm" method="GET">
                 <h2>Payment</h2>
                 <div class="form-group">
-                    <input type="number" style="display: none;" class="form-control" name="amount" id="amount" value="<%=currentUser.total_outstanding%>">
+                    <input type="number" style="display: none;" class="form-control" name="amount" id="amount" value="<%=currentUser.total_outstanding%>" min="<%=currentUser.total_outstanding-1%>" max="<%=currentUser.total_outstanding%>">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">pay</button>
             </form>

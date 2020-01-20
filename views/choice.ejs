@@ -1,8 +1,11 @@
 <%- include('partials/header.ejs')-%>
-    <main class="row justify-content-center gap">
-        <div><a href="/home/dashboard/payment/partial" class="btn btn-secondary mx-3">Partial Payment</a></div>
-        <div><a href="/home/dashboard/payment/usecredit" class="btn btn-secondary mx-3">Partial Payment</a></div>
-        <div><a href="/home/dashboard/payment/complete" class="btn btn-secondary mx-3">Complete Payment</a></div>
-    </main>
+    <div class="row justify-content-center gap">
+        <div class="col-4">
+            <div><a href="/home/dashboard/payment/partial" class="btn btn-secondary btn-md my-3">Partial Payment</a></div>
+            <div><a href="/home/dashboard/payment/usecredit" class="btn btn-secondary btn-md my-3">Partial Payment</a></div>
+            <div><a href="/home/dashboard/payment/complete" class="btn btn-secondary btn-md my-3">Complete Payment</a></div>
+        </div>
+
+    </div>
 
     <%- include('partials/footer.ejs')-%>

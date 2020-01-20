@@ -43,15 +43,16 @@ app.get("/", (req, res) => {
     res.redirect("/home");
 });
 
+//HOME PAGE
 app.get("/home", (req, res) => {
     res.render("landing", { currentUser: req.user });
 });
 
-//REGISTER ROUTES
+//REGISTER ROUTE
 app.get("/home/register", (req, res) => {
     res.render("register", { currentUser: req.user });
 });
-
+//POST REGISTER ROUTE
 app.post("/home/register", (req, res) => {
     User.register(new User({ username: req.body.username }), req.body.password, function(err, user) {
         if (err) {
@@ -77,11 +78,12 @@ app.post("/home/register", (req, res) => {
     });
 });
 
-//LOGIN ROUTES
+//LOGIN ROUTE
 app.get("/home/login", (req, res) => {
     res.render("login", { currentUser: req.user });
 });
 
+//POST LOGIN ROUTE
 app.post("/home/login", passport.authenticate("local", {
     successRedirect: "/home/dashboard",
     failureRedirect: "/home/login"
@@ -93,6 +95,7 @@ app.get("/home/logout", (req, res) => {
     res.redirect("/");
 });
 
+//FUNCTION TO CHECK LOGGEDIN
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -115,11 +118,12 @@ app.get("/home/dashboard/history", isLoggedIn, (req, res) => {
     res.render("history", { currentUser: req.user });
 });
 
-//ADMIN
+//ADMIN ROUTE
 app.get("/home/dashboard/admin", isLoggedIn, (req, res) => {
     res.render("admin", { currentUser: req.user });
 });
 
+//POST ADMIN ROUTE
 app.post("/home/dashboard/admin", isLoggedIn, (req, res) => {
     User.findById(req.user._id, (err, userFound) => {
         userFound.invoices.push({
@@ -138,26 +142,32 @@ app.post("/home/dashboard/admin", isLoggedIn, (req, res) => {
     });
 });
 
-//PAYMENT
+//PAYMENT CHOICE ROUTE
 app.get("/home/dashboard/payment", isLoggedIn, (req, res) => {
     res.render("choice", { currentUser: req.user });
 });
 
-//PARTIAL
+//PARTIAL PAYMENT ROUTE
 app.get("/home/dashboard/payment/partial", isLoggedIn, (req, res) => {
     res.render("partial", { currentUser: req.user });
 });
 
-//Complete
+//COMPLETE PAYMENT ROUTE
 app.get("/home/dashboard/payment/complete", isLoggedIn, (req, res) => {
     res.render("complete", { currentUser: req.user });
 });
 
-//PAYTM
+//PAYTM PAY ROUTE
 var deducted_amount = 0;
+var a = 0;
 app.get("/paywithpaytm", isLoggedIn, (req, res) => {
-    deducted_amount = parseInt(req.query.amount);
-    initPayment(req.query.amount).then(
+    if (req.query.amount) {
+        deducted_amount = parseInt(req.query.amount);
+        a = parseInt(req.query.amount);
+    } else if (req.query.amount2) {
+        a = parseInt(req.query.amount2)
+    }
+    initPayment(a).then(
         success => {
             res.render("paytmRedirect.ejs", {
                 resultData: success,
@@ -172,6 +182,7 @@ app.get("/paywithpaytm", isLoggedIn, (req, res) => {
     );
 });
 
+//PAYTM RESPONSE ROUTE
 app.post("/paywithpaytmresponse", isLoggedIn, (req, res) => {
     responsePayment(req.body).then(
         success => {
@@ -179,7 +190,11 @@ app.post("/paywithpaytmresponse", isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    user.total_outstanding = parseInt(user.total_outstanding) - parseInt(deducted_amount);
+                    if (parseInt(deducted_amount) !== 0) {
+                        user.total_outstanding = parseInt(user.total_outstanding) - parseInt(deducted_amount);
+                    } else {
+                        user.credit = parseInt(user.credit) + parseInt(a);
+                    }
                     user.save();
                 }
             });
@@ -191,6 +206,7 @@ app.post("/paywithpaytmresponse", isLoggedIn, (req, res) => {
     );
 });
 
+//SERVER LISTENING ROUTE
 app.listen(process.env.PORT, (req, res) => {
     console.log("server started at: " + process.env.PORT);
 });

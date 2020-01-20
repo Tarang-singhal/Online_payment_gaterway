@@ -5,5 +5,5 @@ module.exports = {
     WEBSITE: process.env.WEBSITE,
     CHANNEL_ID: process.env.CHANNEL_ID,
     INDUSTRY_TYPE_ID: process.env.INDUSTRY_TYPE_ID,
-    CALLBACK_URL: process.env.CALLBACK_URL
+    CALLBACK_URL: "http://localhost:" + process.env.PORT + "/paywithpaytmresponse"
 };

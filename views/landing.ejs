@@ -1,6 +1,66 @@
-<%- include('partials/header.ejs')-%>
+<!DOCTYPE html>
+<html lang="en">
 
-<main>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://kit.fontawesome.com/59fec8f8ba.js" crossorigin="anonymous"></script>
+    <title>Invoice Problem</title>
+</head>
+
+<body id = "banner_image">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="https://www.adaniports.com/-/media/E22DAD7A3F5B4EF484A6D41626D9BEB4.ashx" alt="Adani Ports" class="img-fluid"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/ ">Home <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/dashboard ">Dashboard <span class="sr-only ">(current)</span></a>
+                    </li>
+                    <!-- <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/dashboard/history">Invoice history <span class="sr-only ">(current)</span></a>
+                    </li> -->
+                    <li class="nav-item active ">
+                        <a class="nav-link text-primary " href="/home/about">About <span class="sr-only ">(current)</span></a>
+                    </li>
+                </ul>
+                <%if(!currentUser){%>
+                    <ul class="navbar-nav">
+                        <li><a class="btn text-purple btn-outline-purple  my-2 " href="/home/login ">Login</a></li>
+                        <li><a class="btn text-pink btn-outline-pink my-2 mx-lg-2  " href="/home/register ">Register</a></li>
+                    </ul>
+                    <% }else{ %>
+                        <a class="btn text-danger btn-outline-danger my-2 my-sm-0 " href="/home/logout ">Logout</a>
+
+                        <% } %>
+            </div>
+        </div>
+
+    </nav>
+    <hr>
+  <!-- <div id="content"> -->
+            <!--Main banner image-->
+            <div >
+                <div class="container">	
+                    <center>
+                        <div id="banner_content">
+                            <h1 style="border-bottom:1px solid white; display:inline;">Welcome</h1>
+                            <p style="font-size : 20px;">adani ports and logistics</p>
+                            <a  href="/home/dashboard" class="btn extra-btn btn-lg active">Dashboard</a>
+                        </div>
+                    </center>
+                </div>
+            <!-- </div> -->
+<!-- <main>
 <div class="container">
     <div class="heading">
         <h1>adani</h1>
@@ -9,6 +69,5 @@
         <a class="btn btn-md extra-btn" href="/home/dashboard">Dashboard</a>
     </div>
 </div>
-	</main>
-    <%- include('partials/footer.ejs')-%>
+	</main> -->
 

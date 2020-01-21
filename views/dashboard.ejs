@@ -1,10 +1,10 @@
 <%- include('partials/header.ejs')-%>
 <div class="container">
     <div class="jumbotron gap" style="display: flex;">
-        <h6> Hello,
+        <h6 style="color:black;"> Hello,
             <%=currentUser.username%>
         </h6>
-        <span>CREDIT: <%if(currentUser.credit===0){%>
+        <span style="color:black;">CREDIT: <%if(currentUser.credit===0){%>
             <strong class="text-primary"> 0 Rs</strong>
              <%}else{%>
                 <strong class="text-primary"><%=currentUser.credit%></strong> Rs
@@ -25,7 +25,7 @@
     </div>
     <div class="row justify-content-md-center">
         <div class="col-md-4 border-outline">
-            <p>Total Outstanding:
+            <p style="color:black;">Total Outstanding:
                 <%if(currentUser.total_outstanding===0){%>
                     <strong style="font-weight: bold;" class="text-danger">0.00 Rs</strong>
                     <p class="text-center">
@@ -34,7 +34,7 @@
                     <%}else{%>
                         <strong class="text-danger"><%=currentUser.total_outstanding%> Rs</strong>
                         <p class="text-center">
-                            <a class="btn choice-btn shadow" href="/home/dashboard/payment" target="_self">Make Payment</a>
+                            <a class="btn extra-btn shadow" href="/home/dashboard/payment" target="_self">Make Payment</a>
                         </p>
                         <%}%>
             </p>

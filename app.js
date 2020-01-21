@@ -20,8 +20,8 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// mongoose.connect("mongodb://localhost/adani_users", {
-mongoose.connect(process.env.DATABASEURL, {
+mongoose.connect("mongodb://localhost/adani_users", {
+// mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

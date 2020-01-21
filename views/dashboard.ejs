@@ -25,7 +25,8 @@
     </div>
     <div class="container">
         <div id="banner_content">
-            <p style="color:black; font-weight:bold !important;">Total Outstanding:
+			<center>
+            <p style="color:white; font-weight:bold!important">Total Outstanding:
                 <%if(currentUser.total_outstanding===0){%>
                     <strong style="font-weight: bold;" class="text-danger">0.00 Rs</strong>
                     <p class="text-center">
@@ -38,18 +39,8 @@
                         </p>
                         <%}%>
             </p>
+			</center>
         </div>
     </div>
 </div>
     <%- include('partials/footer.ejs')-%>
-
-
-                <!-- <div class="container">	
-                    <center>
-                        <div id="banner_content">
-                            <h1 style="border-bottom:1px solid white; display:inline;">Welcome</h1>
-                            <p style="font-size : 20px;">adani ports and logistics</p>
-                            <a  href="/home/dashboard" class="btn extra-btn btn-lg active">Dashboard</a>
-                        </div>
-                    </center>
-                </div> -->

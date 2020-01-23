@@ -1,6 +1,6 @@
 <%- include('partials/header.ejs')-%>
     <div class="container">
-        <a href="/home/dashboard">Go Back!</a>
+        <a href="/home/dashboard"><i class="fas fa-arrow-circle-left"></i> Go Back!</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -8,6 +8,7 @@
                     <th scope="col">Invoice amount</th>
                     <th scope="col">Remark</th>
                     <th scope="col">Issue Date</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,13 @@
                             </td>
                             <td>
                                 <%=invoice.date.toDateString()%>
+                            </td>
+                            <td>
+                                <%if(invoice.paid){%>
+                                    <x>paid <i class="fas fa-check"></i></x>
+                                    <%}else{%>
+                                        <x2>unpaid <i class="fas fa-times"></i></x2>
+                                        <%}%>
                             </td>
                         </tr>
                         <%})%>

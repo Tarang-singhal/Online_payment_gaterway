@@ -1,6 +1,6 @@
 <%-include("partials/header.ejs")-%>
     <div class="container">
-        <a href="/home/dashboard">Go Back!</a>
+        <a href="/home/dashboard"><i class="fas fa-arrow-circle-left"></i> Go Back!</a>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -19,17 +19,17 @@
                                 <%=i++%>
                             </th>
                             <td>
-                                <%=invoice.actual_amount%> Rs
+                                <i class="fas fa-rupee-sign"><%=invoice.actual_amount%></i>
                             </td>
                             <td>
                                 <%=invoice.description%>
                             </td>
                             <td>
-                                <%=invoice.invoice_amount %>
+                                <i class="fas fa-rupee-sign"><%=invoice.invoice_amount %></i>
                             </td>
                             <td>
                                 <%if(invoice.paid){%>
-                                    paid
+                                    <x>paid<i class="fas fa-check"></i></x>
                                     <%}else{%>
                                         <a href="/home/dashboard/status/<%=invoice._id%>" class="btn btn-sm extra-btn">Pay</a>
                                         <%}%>

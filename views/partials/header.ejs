@@ -35,11 +35,11 @@
                 </ul>
                 <%if(!currentUser){%>
                     <ul class="navbar-nav">
-                        <li><a class="btn text-purple btn-outline-purple  my-2 " href="/home/login ">Login</a></li>
-                        <li><a class="btn text-pink btn-outline-pink my-2 mx-lg-2  " href="/home/register ">Register</a></li>
+                        <li><a class="btn text-purple btn-outline-purple  my-2 " href="/home/login "><i class="fas fa-sign-in-alt">Login</i></a></li>
+                        <li><a class="btn text-pink btn-outline-pink my-2 mx-lg-2  " href="/home/register "><i class="fas fa-user-plus">Register</i></a></li>
                     </ul>
                     <% }else{ %>
-                        <a class="btn text-danger btn-outline-danger my-2 my-sm-0 " href="/home/logout ">Logout</a>
+                        <a class="btn text-danger btn-outline-danger my-2 my-sm-0 " href="/home/logout "><i class="fas fa-sign-out-alt">Logout</i></a>
 
                         <% } %>
             </div>
@@ -47,4 +47,3 @@
 
     </nav>
     <hr>
-    

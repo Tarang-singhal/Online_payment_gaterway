@@ -1,4 +1,4 @@
-<%- include('partials/header.ejs')-%>
+<%-include("partials/header.ejs")-%>
     <div class="container">
         <a href="/home/dashboard">Go Back!</a>
         <table class="table table-striped">
@@ -7,12 +7,13 @@
                     <th scope="col">#</th>
                     <th scope="col">Invoice amount</th>
                     <th scope="col">Remark</th>
-                    <th scope="col">Issue Date</th>
+                    <th scope="col">Outstanding</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
                 <%var i=1%>
-                    <%currentUser.invoices.forEach(function(invoice){%>
+                    <%currentUser.invoices.slice().reverse().forEach(function(invoice){%>
                         <tr>
                             <th scope="row">
                                 <%=i++%>
@@ -24,11 +25,18 @@
                                 <%=invoice.description%>
                             </td>
                             <td>
-                                <%=invoice.date.toDateString()%>
+                                <%=invoice.invoice_amount %>
+                            </td>
+                            <td>
+                                <%if(invoice.paid){%>
+                                    paid
+                                    <%}else{%>
+                                        <a href="/home/dashboard/status/<%=invoice._id%>" class="btn btn-sm extra-btn">Pay</a>
+                                        <%}%>
                             </td>
                         </tr>
                         <%})%>
             </tbody>
         </table>
     </div>
-    <%- include('partials/footer.ejs')-%>
+    <%-include("partials/footer.ejs")-%>

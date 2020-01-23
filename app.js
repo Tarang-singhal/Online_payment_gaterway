@@ -9,7 +9,8 @@ var express = require("express"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose"),
-    User = require("./models/user");
+    User = require("./models/user"),
+    Invoice = require("./models/invoice");
 require("dotenv").config();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -128,7 +129,11 @@ app.get("/home/dashboard/credit", isLoggedIn, (req, res) => {
 
 //History ROUTE
 app.get("/home/dashboard/history", isLoggedInHistory, (req, res) => {
-    res.render("history", { currentUser: req.user });
+    console.log(req.user);
+    User.findById(req.user._id).populate('invoices').exec(function(err, user) {
+        console.log(user);
+        res.render("history", { currentUser: user });
+    });
 });
 
 //ADMIN ROUTE
@@ -138,68 +143,124 @@ app.get("/home/dashboard/admin", isLoggedIn, (req, res) => {
 
 //POST ADMIN ROUTE
 app.post("/home/dashboard/admin", isLoggedIn, (req, res) => {
-    User.findById(req.user._id, (err, userFound) => {
-        userFound.invoices.push({
-            invoice_amount: req.body.invoice_amount,
-            paid: false,
-            description: req.body.description
-        });
-        userFound.total_outstanding = parseInt(userFound.total_outstanding) + parseInt(req.body.invoice_amount);
-        userFound.save((err, user) => {
-            if (err) {
-                console.log(err);
-            } else {
-                res.redirect("/home/dashboard");
-            }
-        })
+    Invoice.create({
+        invoice_amount: req.body.invoice_amount,
+        actual_amount: req.body.invoice_amount,
+        description: req.body.description,
+        paid: false
+    }, (err, invoice) => {
+        if (err) {
+            console.log(err);
+        } else {
+            User.findById(req.user._id, (err, userFound) => {
+                userFound.invoices.push(invoice._id);
+                userFound.total_outstanding = parseInt(userFound.total_outstanding) + parseInt(req.body.invoice_amount);
+                userFound.save((err, user) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.redirect("/home/dashboard");
+                    }
+                })
+            });
+        }
     });
 });
 
+//INVOICES STATUS ROUTE
+app.get("/home/dashboard/status", isLoggedIn, (req, res) => {
+    User.findById(req.user._id).populate("invoices").exec((err, user) => {
+        res.render("invoicestatus", { currentUser: user });
+    });
+    // res.render("choice", { currentUser: req.user });
+});
+
 //PAYMENT CHOICE ROUTE
-app.get("/home/dashboard/payment", isLoggedIn, (req, res) => {
-    res.render("choice", { currentUser: req.user });
+app.get("/home/dashboard/status/:id", isLoggedIn, (req, res) => {
+    res.render("choice", { id: req.params.id, currentUser: req.user });
 });
 
 //PARTIAL PAYMENT ROUTE
-app.get("/home/dashboard/payment/partial", isLoggedIn, (req, res) => {
-    res.render("partial", { currentUser: req.user });
+app.get("/home/dashboard/payment/:id/partial", isLoggedIn, (req, res) => {
+    Invoice.findById(req.params.id, (err, invoice) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("partial", { currentUser: req.user, currentInvoice: invoice });
+        }
+    });
 });
 
 //USE CREDIT PAYMENT ROUTE
-app.get("/home/dashboard/payment/usecredit", isLoggedIn, (req, res) => {
-    res.render("usecredit", { currentUser: req.user });
+app.get("/home/dashboard/payment/:id/usecredit", isLoggedIn, (req, res) => {
+    Invoice.findById(req.params.id, (err, invoice) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("usecredit", { currentUser: req.user, currentInvoice: invoice });
+        }
+    });
 });
 
 //POST USE CREDIT PAYMENT ROUTE
-app.post("/home/dashboard/payment/usecredit", isLoggedIn, (req, res) => {
+app.post("/home/dashboard/payment/:id/usecredit", isLoggedIn, (req, res) => {
     User.findById(req.user._id, (err, user) => {
         if (err) {
             console.log(err);
         } else {
-            user.credit = parseInt(user.credit) - parseInt(req.body.amount);
-            user.total_outstanding = parseInt(user.total_outstanding) - parseInt(req.body.amount);
-            user.save();
+            Invoice.findById(req.params.id, (err, invoice) => {
+                invoice.invoice_amount = parseInt(invoice.invoice_amount) - parseInt(req.body.amount);
+                invoice.save();
+                user.credit = parseInt(user.credit) - parseInt(req.body.amount);
+                user.total_outstanding = parseInt(user.total_outstanding) - parseInt(req.body.amount);
+                user.save();
+            });
+
         }
     });
     res.redirect("/home/dashboard");
 });
 
 //COMPLETE PAYMENT ROUTE
-app.get("/home/dashboard/payment/complete", isLoggedIn, (req, res) => {
-    res.render("complete", { currentUser: req.user });
+app.get("/home/dashboard/payment/:id/complete", isLoggedIn, (req, res) => {
+    Invoice.findById(req.params.id, (err, invoice) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("complete", { currentUser: req.user, currentInvoice: invoice });
+        }
+    });
 });
 
 //PAYTM PAY ROUTE
 var deducted_amount = 0;
+app.get("/paywithpaytm/:id", isLoggedIn, (req, res) => {
+    deducted_amount = parseInt(req.query.amount);
+    a = 0;
+    initPayment(deducted_amount).then(
+        success => {
+            Invoice.findById(req.params.id, (err, invoice) => {
+                invoice.invoice_amount = parseInt(invoice.invoice_amount) - parseInt(deducted_amount);
+                if (invoice.invoice_amount === 0) { invoice.paid = true; }
+                invoice.save();
+            });
+            res.render("paytmRedirect.ejs", {
+                resultData: success,
+                paytmFinalUrl: process.env.PAYTM_FINAL_URL,
+                currentUser: req.user
+            });
+        },
+        error => {
+            res.send(error);
+            console.log(error);
+        }
+    );
+});
 var a = 0;
+//ADD CREDITS IN ACCOUNT
 app.get("/paywithpaytm", isLoggedIn, (req, res) => {
-    if (req.query.amount) {
-        deducted_amount = parseInt(req.query.amount);
-        a = parseInt(req.query.amount);
-    } else {
-        a = parseInt(req.query.amount2)
-        deducted_amount = 0;
-    }
+    a = parseInt(req.query.amount2);
+    deducted_amount = 0;
     initPayment(a).then(
         success => {
             res.render("paytmRedirect.ejs", {
@@ -223,7 +284,8 @@ app.post("/paywithpaytmresponse", isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    if (parseInt(deducted_amount) !== 0) {
+                    if (parseInt(deducted_amount) != 0) {
+
                         user.total_outstanding = parseInt(user.total_outstanding) - parseInt(deducted_amount);
                         deducted_amount = 0;
                         a = 0;

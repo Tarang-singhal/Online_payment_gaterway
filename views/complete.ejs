@@ -1,17 +1,17 @@
 <%- include('partials/header.ejs')-%>
-<div class="container ">
-    <div class="row justify-content-md-center gap">
-        <div class="col-md-6">
-            <form action="/paywithpaytm" method="GET">
-                <h2>Payment of
-                    <%=currentUser.total_outstanding%>
-                </h2>
-                <div class="form-group">
-                    <input type="number" required style="display: none;" class="form-control" name="amount" id="amount" value="<%=currentUser.total_outstanding%>" min="<%=Math.floor(currentUser.total_outstanding-1)%>" max="<%=currentUser.total_outstanding%>">
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">pay</button>
-            </form>
+    <div class="container ">
+        <div class="row justify-content-md-center gap">
+            <div class="col-md-6">
+                <form action=<%="/paywithpaytm/" +currentInvoice._id %> method="GET">
+                    <h2>Payment of
+                        <%=currentInvoice.invoice_amount%>
+                    </h2>
+                    <div class="form-group">
+                        <input type="number" required style="display: none;" class="form-control" name="amount" id="amount" value="<%=currentInvoice.invoice_amount%>" min="<%=Math.floor(currentInvoice.invoice_amount-1)%>" max="<%=currentInvoice.invoice_amount%>">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">pay</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
     <%- include('partials/footer.ejs')-%>

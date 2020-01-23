@@ -1,12 +1,6 @@
 var mongoose = require("mongoose"),
-    passportLocalMongoose = require("passport-local-mongoose");
-
-var invoiceSchema = new mongoose.Schema({
-    invoice_amount: Number,
-    paid: Boolean,
-    description: String,
-    date: { type: Date, default: Date.now }
-});
+    passportLocalMongoose = require("passport-local-mongoose"),
+    Invoice = require("./invoice.js");
 var userSchema = new mongoose.Schema({
     username: String,
     port_id: String,
@@ -15,7 +9,10 @@ var userSchema = new mongoose.Schema({
     password: String,
     credit: Number,
     total_outstanding: Number,
-    invoices: [invoiceSchema],
+    invoices: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "invoices"
+    }]
 });
 
 userSchema.plugin(passportLocalMongoose);

@@ -1,48 +1,48 @@
 <%- include('partials/header.ejs')-%>
-<div class="container">
-    <div class="jumbotron gap" style="display: flex;">
-        <h6 style="color:black;"> Hello,
-            <%=currentUser.username%>
-        </h6>
-        <span style="color:black;">CREDIT: <%if(currentUser.credit===0){%>
+    <div class="container">
+        <div class="jumbotron gap" style="display: flex;">
+            <h6> Hello,
+                <%=currentUser.username%>
+            </h6>
+            <span>CREDIT: <%if(currentUser.credit===0){%>
             <strong class="text-primary"> 0 Rs</strong>
              <%}else{%>
                 <strong class="text-primary"><%=currentUser.credit%></strong> Rs
                 <%}%>
             </span>
-    </div>
-    <div class="container menu clearfix">
-        <div class="dropdown" style="float: right;">
-            <button class="btn btn-primary shadow dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </div>
+        <div class="container menu clearfix">
+            <div class="dropdown" style="float: right;">
+                <button class="btn btn-primary shadow dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MENU
         </button>
-            <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/home/dashboard/history">Invoice History</a>
-                <a class="dropdown-item" href="/home/dashboard/credit">Add Credit</a>
-                <a class="dropdown-item" href="#">XYZ</a>
+                <div class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/home/dashboard/history">Invoice History</a>
+                    <a class="dropdown-item" href="/home/dashboard/credit">Add Credit</a>
+                    <a class="dropdown-item" href="#">XYZ</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="justify-content-center">
-		<center>
-        <div id="banner_content">
-			<center>
-            <p style="color:white; font-weight:bold!important">Total Outstanding:
-                <%if(currentUser.total_outstanding===0){%>
-                    <strong style="font-weight: bold;" class="text-danger">0.00 Rs</strong>
-                    <p class="text-center">
-                        <a class="btn btn-success disabled" href="">Make Payment</a>
-                    </p>
-                    <%}else{%>
-                        <strong class="text-danger"><%=currentUser.total_outstanding%> Rs</strong>
-                        <p class="text-center">
-                            <a class="btn extra-btn shadow" href="/home/dashboard/payment" target="_self">Make Payment</a>
+        <div class="justify-content-center">
+            <center>
+                <div id="banner_content">
+                    <center>
+                        <p style="color:white; font-weight:bold!important">Total Outstanding:
+                            <%if(currentUser.total_outstanding===0){%>
+                                <strong style="font-weight: bold;" class="text-danger">0.00 Rs</strong>
+                                <p class="text-center">
+                                    <a class="btn btn-success disabled" href="">Make Payment</a>
+                                </p>
+                                <%}else{%>
+                                    <strong class="text-danger"><%=currentUser.total_outstanding%> Rs</strong>
+                                    <p class="text-center">
+                                        <a class="btn extra-btn shadow" href="/home/dashboard/status" target="_self">Make Payment</a>
+                                    </p>
+                                    <%}%>
                         </p>
-                        <%}%>
-            </p>
-			</center>
+                    </center>
+                </div>
+            </center>
         </div>
-		</center>
     </div>
-</div>
     <%- include('partials/footer.ejs')-%>

@@ -1,23 +1,23 @@
 <%- include('partials/header.ejs')-%>
-<div class="container">
-    <div class="row justify-content-md-center gap">
-        <div class="col-md-6">
-            <form action="/home/dashboard/payment/usecredit" method="POST">
-                <h2>Available Credit:
-                    <%=currentUser.credit%>
-                </h2>
+    <div class="container">
+        <div class="row justify-content-md-center gap">
+            <div class="col-md-6">
+                <form action=<%="/home/dashboard/payment/" +currentInvoice._id + "/usecredit"%> method="POST">
+                    <h2>Available Credit:
+                        <%=currentUser.credit%>
+                    </h2>
 
-                <div class="form-group">
-                    <label for="amount"></label>
-                    <%if(currentUser.total_outstanding>=currentUser.credit){%>
-                        <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.credit%>">
-                        <%}else{%>
-                            <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.total_outstanding%>">
-                            <%}%>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Pay</button>
-            </form>
+                    <div class="form-group">
+                        <label for="amount"></label>
+                        <%if(currentInvoice.invoice_amount>=currentUser.credit){%>
+                            <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentUser.credit%>">
+                            <%}else{%>
+                                <input type="number" required name="amount" class="form-control" id="amount" placeholder="enter credit" min="0" max="<%=currentInvoice.invoice_amount%>">
+                                <%}%>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Pay</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
     <%- include('partials/footer.ejs')-%>

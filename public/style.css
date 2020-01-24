@@ -137,13 +137,13 @@ hr {
 }
 
 .table.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(10, 10, 10, 0.4);
+    background-color: rgba(10, 10, 10, 0.8);
     color: white;
     font-weight: 700;
 }
 
 .table.table-striped tbody tr:nth-of-type(even) {
-    background-color: rgba(10, 10, 10, 0.1);
+    background-color: rgba(10, 10, 10, 0.8);
     color: white;
     font-weight: 700;
 }
@@ -163,4 +163,17 @@ x {
 
 x2 {
     color: rgb(245, 8, 8);
+}
+
+.nav-link.text-primary {
+    color: rgb(226, 33, 65)!important;
+}
+
+.nav-link.text-primary:hover {
+    color: blueviolet;
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    box-shadow: black 1px 1px 9px 1px;
 }

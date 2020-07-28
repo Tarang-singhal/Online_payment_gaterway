@@ -1,10 +1,9 @@
 module.exports = {
-    MID: process.env.MID,
-    PAYTM_MERCHANT_KEY: process.env.PAYTM_MERCHANT_KEY,
-    PAYTM_FINAL_URL: process.env.PAYTM_FINAL_URL,
-    WEBSITE: process.env.WEBSITE,
+    CALLBACK_URL: process.env.CALLBACK_URL,
     CHANNEL_ID: process.env.CHANNEL_ID,
     INDUSTRY_TYPE_ID: process.env.INDUSTRY_TYPE_ID,
-    // CALLBACK_URL: "http://localhost:3000/paywithpaytmresponse"
-    CALLBACK_URL: process.env.CALLBACK_URL
-};
+    MID: process.env.MID,
+    PAYTM_FINAL_URL: process.env.PAYTM_FINAL_URL,
+    PAYTM_MERCHANT_KEY: process.env.PAYTM_MERCHANT_KEY,
+    WEBSITE: process.env.WEBSITE
+}
